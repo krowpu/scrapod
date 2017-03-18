@@ -8,9 +8,9 @@ module Scrapod
   class Server
     attr_reader :host, :port
 
-    def initialize(host: '127.0.0.1', port: 20_885)
-      self.host = host
-      self.port = port
+    def initialize(options = {})
+      self.host = options[:host] || '127.0.0.1'
+      self.port = options[:port] || 20_885
     end
 
     def start; end
