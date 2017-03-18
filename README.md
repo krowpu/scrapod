@@ -49,3 +49,27 @@ than the client. Server configuration can be complex but still not difficult.
 It is described in [the server repository](https://github.com/krowpu/scrapod-server).
 For testing purposes it is enough to install the gem and run
 `scrapod-server --debug`. It will start listening on local port `20885`.
+
+Installation
+------------
+
+Add the gem to your Gemfile (with git source because I do not push new
+experimental gems to RubyGems):
+
+```ruby
+gem 'scrapod', git: 'https://github.com/krowpu/scrapod.git'
+```
+
+This will register a Capybara driver with name `:scrapod` which connects
+to local port `20885`. To connect to the remote host register a driver
+by yourself. Assuming you use Sidekiq with Ruby on Rails, create the file
+`config/initializers/scrapod.rb` with the following content:
+
+```ruby
+Capybara.register_driver :scrapod do |app|
+  Scrapod::Driver.new app, Scrapod::Configuration::DEFAULT.merge(
+    host: ENV['SCRAPOD_HOST'] || '127.0.0.1',
+    port: ENV['SCRAPOD_PORT'] || 20885,
+  )
+end
+```
