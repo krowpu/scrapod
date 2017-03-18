@@ -68,8 +68,8 @@ by yourself. Assuming you use Sidekiq with Ruby on Rails, create the file
 ```ruby
 Capybara.register_driver :scrapod do |app|
   Scrapod::Driver.new app, Scrapod::Configuration::DEFAULT.merge(
-    host: ENV['SCRAPOD_HOST'] || '127.0.0.1',
-    port: ENV['SCRAPOD_PORT'] || 20885,
+    host: ENV['SCRAPOD_HOST']       || '127.0.0.1',
+    port: ENV['SCRAPOD_PORT']&.to_i || 20885,
   )
 end
 ```
