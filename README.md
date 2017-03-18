@@ -73,3 +73,18 @@ Capybara.register_driver :scrapod do |app|
   )
 end
 ```
+
+Usage
+-----
+
+Just create Capybara session with `:scrapod` driver and use it as usually:
+
+```ruby
+session = Capybara::Session.new :scrapod
+session.visit 'https://google.com'
+session.title #=> "Google"
+
+session.fill_in 'q', with: 'Capybara'
+session.all('input')[1].trigger 'click'
+session.title #=> "Capybara - Google Search"
+```
