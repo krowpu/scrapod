@@ -29,3 +29,23 @@ which are good until you have to run more than a few tens of tasks per hour.
 
 [The Scrapod](https://github.com/krowpu/scrapod)
 tries to solve all or most of the problems listed above.
+
+Architecture
+------------
+
+The Scrapod consists of two parts: client and server.
+
+### Client
+
+Client is a driver for Capybara. It connects to server when you create session,
+sends calls to Capybara API over the connection and converts responses to Ruby
+data structures. This is what you want to use in a final product application.
+This document describes the client completely.
+
+### Server
+
+Server is a process which can run on the same or on another machine
+than the client. Server configuration can be complex but still not difficult.
+It is described in [the server repository](https://github.com/krowpu/scrapod-server).
+For testing purposes it is enough to install the gem and run
+`scrapod-server --debug`. It will start listening on local port `20885`.
