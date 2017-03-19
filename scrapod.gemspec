@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.author = 'krowpu'
   spec.email  = 'krowpu@tightmail.com'
 
-  spec.description = <<-END.split("\n").join ' '
+  spec.description = <<-END.split("\n").map(&:strip).join ' '
     A driver of remote headless scraping cluster for Capybara
     (aka remote Capybara Webkit).
   END
