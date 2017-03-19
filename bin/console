@@ -6,7 +6,11 @@ require 'pry'
 
 require 'scrapod'
 
-# You can add fixtures and/or initialization code here to make experimenting
-# with your gem easier. You can also use a different console, if you like.
+puts 'Ensure you are running Scrapod server on localhost'
+puts 'Create session with method `new_session` (which uses `Capybara::Session.new :scrapod`)'
+
+def new_session
+  Capybara::Session.new :scrapod
+end
 
 Pry.start
